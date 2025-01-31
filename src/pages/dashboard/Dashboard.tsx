@@ -1,12 +1,13 @@
-import { SidebarItem } from '../../components/dashboard/SidebarItem';
-import { StatCard } from '../../components/dashboard/StatCard';
-import { ChartContainer } from '../../components/dashboard/ChartContainer';
+import { StatCard } from './components/StatCard';
+import { SidebarItem } from './components/SidebarItem';
+import { ChartContainer } from './components/ChartContainer';
+import { Layout } from '../layout/Layout';
 
 const sidebarItems = [
     { icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/56fd6267b1ab060fc33101012fdb65114fab6b9bb7fcefe60483c3c556164859?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd", label: "Dashboard", isActive: true },
     { icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/c8ca490a0044b40d14d83e7a81adf319075518255b9c967122008607fb38a912?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd", label: "Claim" },
     { icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/c1f01254fa4ca6666ed468dca3b2c25ee5c1c586540f0723d99b4cede4ed231c?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd", label: "Calculator" },
-    { icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/851b2c01e2951eb22ff7fb8ac25b90d8b78f73c0338c7476eb5a6ddb89747592?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd", label: "Stake" },
+    { icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/f18be3a27b1eaa37f4856827d5066875633de751be7e06745d4268d6cc8f578c?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd", label: "Stake" },
     { icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/894c494bf9c457680db1697abaca71ea5e616b67aab1921e1d45b2507031e5c0?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd", label: "Swap" },
     { icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/50e632128c3dd9787c78881d8d7f7a88c7137b812c1bfa4154635f34c0edeb6c?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd", label: "Docs" }
 ];
@@ -22,38 +23,12 @@ const statsData = [
 
 export function Dashboard() {
     return (
-        <div className="flex flex-col bg-gray-950">
-            <header className="flex flex-wrap gap-10 justify-between items-center px-6 w-full text-white bg-zinc-900 min-h-[100px] max-md:px-5 max-md:max-w-full">
-                <div className="gap-4 self-stretch my-auto text-4xl font-black w-[105px]">
-                    <span className="italic font-semibold">ic</span>
-                    <span className="">ETH</span>
-                </div>
-                <div className="gap-4 self-stretch my-auto text-2xl font-semibold leading-snug whitespace-nowrap w-[127px]">
-                    Dashboard
-                </div>
-                <div className="flex flex-wrap gap-9 items-center self-stretch pr-0.5 my-auto text-xl font-medium min-w-[240px] w-[930px] max-md:max-w-full">
-                    <img
-                        loading="lazy"
-                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/86c062aa5d77d4ae9283ce4fd6bf934ea04f4d29569530b309bd659d1104a7ca?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd"
-                        alt="Navigation icon"
-                        className="object-contain shrink-0 self-stretch my-auto w-8 aspect-square"
-                    />
-                    <button className="flex gap-2.5 justify-center items-center self-stretch p-2.5 my-auto rounded-xl border-cyan-400 border-solid bg-[linear-gradient(90deg,#30CEDF_0.15%,#1940B5_99.86%)] border-[3px]">
-                        <img
-                            loading="lazy"
-                            src="https://cdn.builder.io/api/v1/image/assets/TEMP/9c6cdad24ef90be18496f0b8b1b867016c9e49cf6a9f35f6e0d5d1ef1d53be8b?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd"
-                            alt="Wallet icon"
-                            className="object-contain shrink-0 self-stretch my-auto aspect-square w-[22px]"
-                        />
-                        <span>Connect Wallet</span>
-                    </button>
-                </div>
-            </header>
 
-            <div className="self-center w-full max-w-[1385px] max-md:max-w-full">
+        <Layout>
+            <main className="self-center w-full max-w-[1385px] max-md:max-w-full">
                 <div className="flex gap-5 max-md:flex-col">
-                    <nav className="flex flex-col w-[16%] max-md:ml-0 max-md:w-full">
-                        <div className="flex grow max-md:mt-7">
+                    <aside className="flex flex-col w-[16%] max-md:ml-0 max-md:w-full">
+                        <nav className="flex grow max-md:mt-7">
                             <div className="flex z-10 flex-col my-auto w-full max-md:-mr-0.5">
                                 {sidebarItems.map((item, index) => (
                                     <div key={index} className={index > 0 ? "mt-3.5" : ""}>
@@ -62,22 +37,16 @@ export function Dashboard() {
                                 ))}
 
                                 <div className="flex gap-8 items-start self-start px-3 py-2.5 ml-4 rounded-lg bg-stone-300 bg-opacity-30 mt-[486px] max-md:mt-10 max-md:ml-2.5">
-                                    {[9, 10, 11].map((num) => (
-                                        <img
-                                            key={num}
-                                            loading="lazy"
-                                            src={`http://b.io/ext_${num}-`}
-                                            alt={`Social icon ${num}`}
-                                            className="object-contain shrink-0 w-6 aspect-square"
-                                        />
-                                    ))}
+                                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6435451557eaf80b0ab6768af4ae34c46e1d1ed5d2f6bc0b6ee96421ff594fbf?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd" alt="Social icon 1" className="object-contain shrink-0 w-6 aspect-square" />
+                                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/2708c5c7418cedba2945d19ad583e33f801c6938574fa1b32272e004dc85736a?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd" alt="Social icon 2" className="object-contain shrink-0 w-6 aspect-square" />
+                                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/4102ef8b3b6f7106f788cd8f242cbccca7636c0cffb883f638aa6c0f04aee4d5?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd" alt="Social icon 3" className="object-contain shrink-0 w-6 aspect-square" />
                                 </div>
                             </div>
                             <div className="flex shrink-0 w-0.5 bg-stone-300 bg-opacity-30 h-[960px]" />
-                        </div>
-                    </nav>
+                        </nav>
+                    </aside>
 
-                    <main className="flex flex-col ml-5 w-[84%] max-md:ml-0 max-md:w-full">
+                    <section className="flex flex-col ml-5 w-[84%] max-md:ml-0 max-md:w-full">
                         <div className="flex flex-col self-stretch my-auto w-full max-md:mt-10 max-md:max-w-full">
                             <div className="max-md:max-w-full">
                                 <div className="flex gap-5 max-md:flex-col">
@@ -99,7 +68,7 @@ export function Dashboard() {
                                                         <img
                                                             loading="lazy"
                                                             src="https://cdn.builder.io/api/v1/image/assets/TEMP/1237c6ff47c8ffa26eb65e7ecf6bd69dedaf2fd4f0502844a8334c182e9d2a8b?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd"
-                                                            alt="Total value icon"
+                                                            alt="Total Value Staked icon"
                                                             className="object-contain shrink-0 self-stretch my-auto aspect-square w-[18px]"
                                                         />
                                                         <div className="self-stretch my-auto w-[127px]">
@@ -138,7 +107,23 @@ export function Dashboard() {
                                             subtitle="Net Yield vs ETH"
                                             buttonText="connect for data"
                                         >
-                                            <div>Chart content</div>
+                                            <div className="flex flex-wrap gap-2.5 mt-5 max-md:max-w-full">
+                                                <div className="flex flex-col justify-center items-end text-xs font-bold text-right whitespace-nowrap text-slate-300">
+                                                    <div>21,25k</div>
+                                                    <div className="mt-9">21k</div>
+                                                    <div className="mt-9">20,75k</div>
+                                                    <div className="mt-9">20,50k</div>
+                                                    <div className="mt-9">20,25k</div>
+                                                    <div className="mt-9">20k</div>
+                                                </div>
+                                                <div className="flex flex-col grow shrink-0 my-auto basis-0 w-fit max-md:max-w-full">
+                                                    <div className="shrink-0 h-px border border-dashed border-slate-600 max-md:max-w-full" />
+                                                    <div className="shrink-0 mt-12 h-0 border border-dashed border-slate-600 max-md:mt-10 max-md:max-w-full" />
+                                                    <div className="shrink-0 mt-24 h-px border border-dashed border-slate-600 max-md:mt-10 max-md:max-w-full" />
+                                                    <div className="shrink-0 mt-12 h-px border border-dashed border-slate-600 max-md:mt-10 max-md:max-w-full" />
+                                                    <div className="shrink-0 mt-12 h-px border border-dashed border-slate-600 max-md:mt-10 max-md:max-w-full" />
+                                                </div>
+                                            </div>
                                         </ChartContainer>
                                     </div>
 
@@ -148,7 +133,23 @@ export function Dashboard() {
                                             subtitle="How much icETH is growing over ETH"
                                             buttonText="connect for data"
                                         >
-                                            <div>Chart content</div>
+                                            <div className="flex gap-2.5 mt-3">
+                                                <div className="flex flex-col justify-center items-end text-xs font-bold text-right whitespace-nowrap text-slate-300">
+                                                    <div>1.0035</div>
+                                                    <div className="mt-9">1.0030</div>
+                                                    <div className="mt-9">1.0025</div>
+                                                    <div className="mt-9">1.0020</div>
+                                                    <div className="mt-9">1.0015</div>
+                                                    <div className="mt-9">1.0010</div>
+                                                </div>
+                                                <div className="flex flex-col grow shrink-0 my-auto basis-0 w-fit">
+                                                    <div className="shrink-0 h-px border border-dashed border-slate-600" />
+                                                    <div className="shrink-0 mt-12 h-0 border border-dashed border-slate-600 max-md:mt-10" />
+                                                    <div className="shrink-0 mt-24 h-px border border-dashed border-slate-600 max-md:mt-10" />
+                                                    <div className="shrink-0 mt-12 h-px border border-dashed border-slate-600 max-md:mt-10" />
+                                                    <div className="shrink-0 mt-12 h-px border border-dashed border-slate-600 max-md:mt-10" />
+                                                </div>
+                                            </div>
                                         </ChartContainer>
                                     </div>
                                 </div>
@@ -176,9 +177,9 @@ export function Dashboard() {
                                 </div>
                             </div>
                         </div>
-                    </main>
+                    </section>
                 </div>
-            </div>
-        </div>
+            </main>
+        </Layout>
     );
 }

@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { FooterLink } from '../components/FooterLink';
 import { RawImg } from '../components/RawImg';
-import { SocialIcon } from '../components/SocialIcon';
 import { FeatureCard } from '../components/FeatureCard';
+import { Layout } from './layout/Layout';
 
 export const Landing: React.FC = () => {
     const features = [
@@ -23,27 +22,11 @@ export const Landing: React.FC = () => {
         }
     ];
 
-    const socialIcons = ['github', 'twitter', 'discord', 'medium'];
 
-    const footerLinks = [
-        'Cookie Policy', 'Privacy', 'Terms', 'Press Kit', 'Imprint', 'Preferences', 'Licenses'
-    ];
 
     return (
-        <>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
-            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
-
-            <div className="w-full min-h-screen bg-gray-950">
-                <nav className="flex justify-between items-center px-20 py-5 max-md:p-10">
-                    <div className="text-2xl font-semibold text-white">icETH</div>
-                    <div className="flex gap-5 max-sm:hidden">
-                        <div className="text-white no-underline">Dashboard</div>
-                        <div className="text-white no-underline">More about</div>
-                    </div>
-                </nav>
-
+        <Layout>
+            <>
                 <section className="flex gap-10 items-center px-20 py-10 max-md:flex-col max-md:p-10">
                     <div className="max-w-[600px]">
                         <h1 className="mb-5 text-5xl font-semibold text-white">The coldest over liquids</h1>
@@ -79,47 +62,8 @@ export const Landing: React.FC = () => {
                     </div>
                 </section>
 
-                <footer className="px-20 py-16 mt-16 bg-indigo-950 rounded-[40px_40px_0_0] max-md:p-10">
-                    <div className="flex justify-between mb-10 max-sm:flex-col max-sm:gap-10">
-                        <div className="max-w-[400px]">
-                            <h3 className="mb-5 text-xl font-semibold text-white">Always stay safe</h3>
-                            <p className="leading-relaxed text-zinc-500">
-                                Join our mailing list to stay in the loop with our newest feature releases, NFT drops, and tips and tricks for navigating on Index
-                            </p>
-                            <form className="flex gap-2.5 mt-5 max-sm:flex-col">
-                                <label htmlFor="emailInput" className="sr-only">Email address</label>
-                                <input
-                                    type="email"
-                                    id="emailInput"
-                                    placeholder="Your email address"
-                                    className="flex-1 p-3 rounded-lg border-[none]"
-                                    aria-label="Email address"
-                                />
-                                <button type="submit" className="px-6 py-3 text-white bg-cyan-400 rounded-lg cursor-pointer border-[none]">
-                                    sign up
-                                </button>
-                            </form>
-                        </div>
-                        <div className="max-w-[400px]">
-                            <h3 className="mb-5 text-xl font-semibold text-white">Be at Coop Community 🦉</h3>
-                            <div className="flex gap-4">
-                                {socialIcons.map((icon, index) => (
-                                    <SocialIcon key={index} icon={icon} />
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                    <div className="flex justify-between items-center pt-10 mt-10 border-t border-solid border-t-white border-t-opacity-10 max-sm:flex-col max-sm:gap-5 max-sm:text-center">
-                        <RawImg image="https://placehold.co/120x30/30cedf/30cedf" altText="Footer Logo" className="max-w-[120px]" />
-                        <div className="flex gap-5 max-sm:flex-wrap max-sm:justify-center">
-                            {footerLinks.map((link, index) => (
-                                <FooterLink key={index} text={link} />
-                            ))}
-                        </div>
-                        <div className="text-sm text-white">® 2022 Index Coop Technology LLC.</div>
-                    </div>
-                </footer>
-            </div>
-        </>
+     
+            </>
+        </Layout>
     );
 };
