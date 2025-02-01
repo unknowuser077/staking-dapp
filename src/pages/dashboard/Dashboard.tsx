@@ -2,6 +2,7 @@ import { StatCard } from './components/StatCard';
 import { SidebarItem } from './components/SidebarItem';
 import { ChartContainer } from './components/ChartContainer';
 import { Layout } from '../layout/Layout';
+import React from 'react';
 
 const sidebarItems = [
     { icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/56fd6267b1ab060fc33101012fdb65114fab6b9bb7fcefe60483c3c556164859?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd", label: "Dashboard", isActive: true },
@@ -21,165 +22,186 @@ const statsData = [
     { icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/a4e54ea7680ddab2b2679f6fea75669bc1de739a660dd041b03450e3e937c8c9?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd", label: "Redeeming Fee", value: "0.25%" }
 ];
 
-export function Dashboard() {
-    return (
+export const Dashboard: React.FC = () => {
+    const [activeIndex, setActiveIndex] = React.useState(0);
+    const handleClick = (index: number) => {
+        setActiveIndex(index);
+    };
 
-        <Layout>
-            <main className="self-center w-full max-w-[1385px] max-md:max-w-full">
-                <div className="flex gap-5 max-md:flex-col">
-                    <aside className="flex flex-col w-[16%] max-md:ml-0 max-md:w-full">
-                        <nav className="flex grow max-md:mt-7">
-                            <div className="flex z-10 flex-col my-auto w-full max-md:-mr-0.5">
-                                {sidebarItems.map((item, index) => (
-                                    <div key={index} className={index > 0 ? "mt-3.5" : ""}>
-                                        <SidebarItem {...item} />
-                                    </div>
-                                ))}
 
-                                <div className="flex gap-8 items-start self-start px-3 py-2.5 ml-4 rounded-lg bg-stone-300 bg-opacity-30 mt-[486px] max-md:mt-10 max-md:ml-2.5">
-                                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6435451557eaf80b0ab6768af4ae34c46e1d1ed5d2f6bc0b6ee96421ff594fbf?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd" alt="Social icon 1" className="object-contain shrink-0 w-6 aspect-square" />
-                                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/2708c5c7418cedba2945d19ad583e33f801c6938574fa1b32272e004dc85736a?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd" alt="Social icon 2" className="object-contain shrink-0 w-6 aspect-square" />
-                                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/4102ef8b3b6f7106f788cd8f242cbccca7636c0cffb883f638aa6c0f04aee4d5?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd" alt="Social icon 3" className="object-contain shrink-0 w-6 aspect-square" />
-                                </div>
-                            </div>
-                            <div className="flex shrink-0 w-0.5 bg-stone-300 bg-opacity-30 h-[960px]" />
-                        </nav>
-                    </aside>
-
-                    <section className="flex flex-col ml-5 w-[84%] max-md:ml-0 max-md:w-full">
-                        <div className="flex flex-col self-stretch my-auto w-full max-md:mt-10 max-md:max-w-full">
-                            <div className="max-md:max-w-full">
-                                <div className="flex gap-5 max-md:flex-col">
-                                    <div className="flex flex-col w-[66%] max-md:ml-0 max-md:w-full">
-                                        <div className="flex flex-col mx-auto w-full bg-gray-800 rounded-2xl border border-solid border-white border-opacity-10 max-md:mt-7 max-md:max-w-full">
-                                            <div className="flex flex-wrap gap-10 justify-between items-start px-6 py-7 min-h-[197px] max-md:px-5 max-md:max-w-full">
-                                                {statsData.map((stat, index) => (
-                                                    <StatCard key={index} {...stat} />
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex flex-col ml-5 w-[34%] max-md:ml-0 max-md:w-full">
-                                        <div className="flex flex-col grow w-full font-medium bg-gray-800 rounded-2xl border border-solid border-white border-opacity-10 max-md:mt-7">
-                                            <div className="flex flex-col justify-between items-start px-5 py-8 w-full min-h-[197px]">
-                                                <div className="flex flex-col">
-                                                    <div className="flex gap-1.5 items-center text-sm text-white">
-                                                        <img
-                                                            loading="lazy"
-                                                            src="https://cdn.builder.io/api/v1/image/assets/TEMP/1237c6ff47c8ffa26eb65e7ecf6bd69dedaf2fd4f0502844a8334c182e9d2a8b?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd"
-                                                            alt="Total Value Staked icon"
-                                                            className="object-contain shrink-0 self-stretch my-auto aspect-square w-[18px]"
-                                                        />
-                                                        <div className="self-stretch my-auto w-[127px]">
-                                                            Total Value Staked
-                                                        </div>
-                                                    </div>
-                                                    <div className="mt-4 max-w-full text-3xl rounded-none w-[119px]">
-                                                        $0 USD
-                                                    </div>
-                                                </div>
-                                                <div className="flex gap-5 items-center mt-6 whitespace-nowrap">
-                                                    <div className="flex flex-col self-stretch my-auto">
-                                                        <div className="text-lg text-white">0</div>
-                                                        <div className="flex gap-2 items-center mt-1 text-sm text-zinc-500">
-                                                            <img
-                                                                loading="lazy"
-                                                                src="https://cdn.builder.io/api/v1/image/assets/TEMP/22268ca16b4ad8fe37eafad93bcff02c3375fa8007a8a8c5b6b2d953edc76fbb?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd"
-                                                                alt="icETH icon"
-                                                                className="object-contain shrink-0 self-stretch my-auto w-5 rounded-full aspect-square"
-                                                            />
-                                                            <div className="self-stretch my-auto">icETH</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+    const renderContent = () => {
+        switch (activeIndex) {
+            case 0:
+                return <div className="flex flex-col self-stretch my-auto w-full max-md:mt-10 max-md:max-w-full">
+                    <div className="max-md:max-w-full">
+                        <div className="flex gap-5 max-md:flex-col">
+                            <div className="flex flex-col w-[66%] max-md:ml-0 max-md:w-full">
+                                <div className="flex flex-col mx-auto w-full bg-gray-800 rounded-2xl border border-solid border-white border-opacity-10 max-md:mt-7 max-md:max-w-full">
+                                    <div className="flex flex-wrap gap-10 justify-between items-start px-6 py-7 min-h-[197px] max-md:px-5 max-md:max-w-full">
+                                        {statsData.map((stat, index) => (
+                                            <StatCard key={index} {...stat} />
+                                        ))}
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="mt-7 max-md:max-w-full">
-                                <div className="flex gap-5 max-md:flex-col">
-                                    <div className="flex flex-col w-[66%] max-md:ml-0 max-md:w-full">
-                                        <ChartContainer
-                                            title="Staked Interest"
-                                            subtitle="Net Yield vs ETH"
-                                            buttonText="connect for data"
-                                        >
-                                            <div className="flex flex-wrap gap-2.5 mt-5 max-md:max-w-full">
-                                                <div className="flex flex-col justify-center items-end text-xs font-bold text-right whitespace-nowrap text-slate-300">
-                                                    <div>21,25k</div>
-                                                    <div className="mt-9">21k</div>
-                                                    <div className="mt-9">20,75k</div>
-                                                    <div className="mt-9">20,50k</div>
-                                                    <div className="mt-9">20,25k</div>
-                                                    <div className="mt-9">20k</div>
-                                                </div>
-                                                <div className="flex flex-col grow shrink-0 my-auto basis-0 w-fit max-md:max-w-full">
-                                                    <div className="shrink-0 h-px border border-dashed border-slate-600 max-md:max-w-full" />
-                                                    <div className="shrink-0 mt-12 h-0 border border-dashed border-slate-600 max-md:mt-10 max-md:max-w-full" />
-                                                    <div className="shrink-0 mt-24 h-px border border-dashed border-slate-600 max-md:mt-10 max-md:max-w-full" />
-                                                    <div className="shrink-0 mt-12 h-px border border-dashed border-slate-600 max-md:mt-10 max-md:max-w-full" />
-                                                    <div className="shrink-0 mt-12 h-px border border-dashed border-slate-600 max-md:mt-10 max-md:max-w-full" />
+                            <div className="flex flex-col ml-5 w-[34%] max-md:ml-0 max-md:w-full">
+                                <div className="flex flex-col grow w-full font-medium bg-gray-800 rounded-2xl border border-solid border-white border-opacity-10 max-md:mt-7">
+                                    <div className="flex flex-col justify-between items-start px-5 py-8 w-full min-h-[197px]">
+                                        <div className="flex flex-col">
+                                            <div className="flex gap-1.5 items-center text-sm text-white">
+                                                <img
+                                                    loading="lazy"
+                                                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/1237c6ff47c8ffa26eb65e7ecf6bd69dedaf2fd4f0502844a8334c182e9d2a8b?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd"
+                                                    alt="Total Value Staked icon"
+                                                    className="object-contain shrink-0 self-stretch my-auto aspect-square w-[18px]"
+                                                />
+                                                <div className="self-stretch my-auto w-[127px]">
+                                                    Total Value Staked
                                                 </div>
                                             </div>
-                                        </ChartContainer>
-                                    </div>
-
-                                    <div className="flex flex-col ml-5 w-[34%] max-md:ml-0 max-md:w-full">
-                                        <ChartContainer
-                                            title="icETH vs ETH"
-                                            subtitle="How much icETH is growing over ETH"
-                                            buttonText="connect for data"
-                                        >
-                                            <div className="flex gap-2.5 mt-3">
-                                                <div className="flex flex-col justify-center items-end text-xs font-bold text-right whitespace-nowrap text-slate-300">
-                                                    <div>1.0035</div>
-                                                    <div className="mt-9">1.0030</div>
-                                                    <div className="mt-9">1.0025</div>
-                                                    <div className="mt-9">1.0020</div>
-                                                    <div className="mt-9">1.0015</div>
-                                                    <div className="mt-9">1.0010</div>
-                                                </div>
-                                                <div className="flex flex-col grow shrink-0 my-auto basis-0 w-fit">
-                                                    <div className="shrink-0 h-px border border-dashed border-slate-600" />
-                                                    <div className="shrink-0 mt-12 h-0 border border-dashed border-slate-600 max-md:mt-10" />
-                                                    <div className="shrink-0 mt-24 h-px border border-dashed border-slate-600 max-md:mt-10" />
-                                                    <div className="shrink-0 mt-12 h-px border border-dashed border-slate-600 max-md:mt-10" />
-                                                    <div className="shrink-0 mt-12 h-px border border-dashed border-slate-600 max-md:mt-10" />
-                                                </div>
+                                            <div className="mt-4 max-w-full text-3xl rounded-none w-[119px]">
+                                                $0 USD
                                             </div>
-                                        </ChartContainer>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="mt-7 max-md:pr-5 max-md:mr-1 max-md:max-w-full">
-                                <div className="flex gap-5 max-md:flex-col">
-                                    <div className="flex flex-col w-[74%] max-md:ml-0 max-md:w-full">
-                                        <div className="flex flex-col grow items-start px-12 py-16 text-white max-md:px-5 max-md:max-w-full">
-                                            <h2 className="text-4xl font-semibold leading-snug">
-                                                Join the Community!
-                                            </h2>
-                                            <p className="mt-2 text-2xl font-medium leading-8">
-                                                Enter on Index Coop group
-                                                <br />
-                                                at Discord and get the best news
-                                            </p>
                                         </div>
-                                    </div>
-                                    <div className="flex flex-col ml-5 w-[26%] max-md:ml-0 max-md:w-full">
-                                        <button className="gap-4 self-stretch p-4 mt-20 w-full text-3xl font-medium text-white rounded-2xl border-cyan-400 border-solid bg-[linear-gradient(90deg,#30CEDF_0.15%,#1940B5_99.86%)] border-[4.566px] max-md:mt-10">
-                                            enter discord
-                                        </button>
+                                        <div className="flex gap-5 items-center mt-6 whitespace-nowrap">
+                                            <div className="flex flex-col self-stretch my-auto">
+                                                <div className="text-lg text-white">0</div>
+                                                <div className="flex gap-2 items-center mt-1 text-sm text-zinc-500">
+                                                    <img
+                                                        loading="lazy"
+                                                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/22268ca16b4ad8fe37eafad93bcff02c3375fa8007a8a8c5b6b2d953edc76fbb?placeholderIfAbsent=true&apiKey=54a0d932445849419575ff7258b081bd"
+                                                        alt="icETH icon"
+                                                        className="object-contain shrink-0 self-stretch my-auto w-5 rounded-full aspect-square"
+                                                    />
+                                                    <div className="self-stretch my-auto">icETH</div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </section>
-                </div>
-            </main>
+                    </div>
+
+                    <div className="mt-7 max-md:max-w-full">
+                        <div className="flex gap-5 max-md:flex-col">
+                            <div className="flex flex-col w-[66%] max-md:ml-0 max-md:w-full">
+                                <ChartContainer
+                                    title="Staked Interest"
+                                    subtitle="Net Yield vs ETH"
+                                    buttonText="connect for data"
+                                >
+                                    <div className="flex flex-wrap gap-2.5 mt-5 max-md:max-w-full">
+                                        <div className="flex flex-col justify-center items-end text-xs font-bold text-right whitespace-nowrap text-slate-300">
+                                            <div>21,25k</div>
+                                            <div className="mt-9">21k</div>
+                                            <div className="mt-9">20,75k</div>
+                                            <div className="mt-9">20,50k</div>
+                                            <div className="mt-9">20,25k</div>
+                                            <div className="mt-9">20k</div>
+                                        </div>
+                                        <div className="flex flex-col grow shrink-0 my-auto basis-0 w-fit max-md:max-w-full">
+                                            <div className="shrink-0 h-px border border-dashed border-slate-600 max-md:max-w-full" />
+                                            <div className="shrink-0 mt-12 h-0 border border-dashed border-slate-600 max-md:mt-10 max-md:max-w-full" />
+                                            <div className="shrink-0 mt-24 h-px border border-dashed border-slate-600 max-md:mt-10 max-md:max-w-full" />
+                                            <div className="shrink-0 mt-12 h-px border border-dashed border-slate-600 max-md:mt-10 max-md:max-w-full" />
+                                            <div className="shrink-0 mt-12 h-px border border-dashed border-slate-600 max-md:mt-10 max-md:max-w-full" />
+                                        </div>
+                                    </div>
+                                </ChartContainer>
+                            </div>
+
+                            <div className="flex flex-col ml-5 w-[34%] max-md:ml-0 max-md:w-full">
+                                <ChartContainer
+                                    title="icETH vs ETH"
+                                    subtitle="How much icETH is growing over ETH"
+                                    buttonText="connect for data"
+                                >
+                                    <div className="flex gap-2.5 mt-3">
+                                        <div className="flex flex-col justify-center items-end text-xs font-bold text-right whitespace-nowrap text-slate-300">
+                                            <div>1.0035</div>
+                                            <div className="mt-9">1.0030</div>
+                                            <div className="mt-9">1.0025</div>
+                                            <div className="mt-9">1.0020</div>
+                                            <div className="mt-9">1.0015</div>
+                                            <div className="mt-9">1.0010</div>
+                                        </div>
+                                        <div className="flex flex-col grow shrink-0 my-auto basis-0 w-fit">
+                                            <div className="shrink-0 h-px border border-dashed border-slate-600" />
+                                            <div className="shrink-0 mt-12 h-0 border border-dashed border-slate-600 max-md:mt-10" />
+                                            <div className="shrink-0 mt-24 h-px border border-dashed border-slate-600 max-md:mt-10" />
+                                            <div className="shrink-0 mt-12 h-px border border-dashed border-slate-600 max-md:mt-10" />
+                                            <div className="shrink-0 mt-12 h-px border border-dashed border-slate-600 max-md:mt-10" />
+                                        </div>
+                                    </div>
+                                </ChartContainer>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-7 max-md:pr-5 max-md:mr-1 max-md:max-w-full">
+                        <div className="flex gap-5 max-md:flex-col">
+                            <div className="flex flex-col w-[74%] max-md:ml-0 max-md:w-full">
+                                <div className="flex flex-col grow items-start px-12 py-16 text-white max-md:px-5 max-md:max-w-full">
+                                    <h2 className="text-4xl font-semibold leading-snug">
+                                        Join the Community!
+                                    </h2>
+                                    <p className="mt-2 text-2xl font-medium leading-8">
+                                        Enter on Index Coop group
+                                        <br />
+                                        at Discord and get the best news
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="flex flex-col ml-5 w-[26%] max-md:ml-0 max-md:w-full">
+                                <button className="gap-4 self-stretch p-4 mt-20 w-full text-3xl font-medium text-white rounded-2xl border-cyan-400 border-solid bg-[linear-gradient(90deg,#30CEDF_0.15%,#1940B5_99.86%)] border-[4.566px] max-md:mt-10">
+                                    enter discord
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>;
+            case 1:
+                return <div>Profile Content</div>;
+            case 2:
+                return <div>Settings Content</div>;
+            default:
+                return <div>Home Content</div>;
+        }
+    };
+    return (
+
+        <Layout>
+            <>
+
+                <main className="self-center w-full max-w-[1385px] max-md:max-w-full">
+                    <div className="flex gap-5 max-md:flex-col">
+                        <aside className="flex flex-col w-[16%] max-md:ml-0 max-md:w-full">
+                            <nav className="flex grow max-md:mt-7">
+                                <div className="flex z-10 flex-col mt-7 w-full max-md:-mr-0.5">
+                                    {sidebarItems.map((item, index) => (
+                                        <div key={index} className={index > 0 ? "mt-3.5" : ""}>
+                                            <SidebarItem
+                                                key={index}
+                                                icon={item.icon}
+                                                label={item.label}
+                                                isActive={index === activeIndex}
+                                                onClick={() => handleClick(index)}
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="flex shrink-0 w-0.5 bg-stone-300 bg-opacity-30 h-[960px]" />
+                            </nav>
+                        </aside>
+
+                        <section className="flex mt-7 flex-col ml-5 w-[84%] max-md:ml-0 max-md:w-full">
+                            {renderContent()}
+                        </section>
+                    </div>
+                </main>
+            </>
         </Layout>
     );
 }

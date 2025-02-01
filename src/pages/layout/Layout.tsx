@@ -10,10 +10,11 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
-        <div className="w-full min-h-screen bg-gray-950">
-            <Header />
-            <main>{children}</main>
-            <Footer />
-        </div>
+
+            <div className="w-full min-h-screen bg-gray-950">
+                <Header />
+                <main>{children}</main>
+                <Footer />
+            </div>
     );
 };

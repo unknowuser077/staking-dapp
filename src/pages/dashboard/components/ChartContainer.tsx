@@ -19,7 +19,7 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({ title, subtitle,
           <div className="self-stretch my-auto">{buttonText}</div>
         </div>
       </div>
-      {children}
+      {children ?? <p>No data available</p>}
     </div>
   );
 };

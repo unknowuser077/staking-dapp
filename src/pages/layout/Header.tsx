@@ -8,12 +8,12 @@ export const Header: React.FC = () => {
                 <div className="text-2xl font-semibold text-white">icETH</div>
                 <ul className="flex items-center space-x-4 gap-5 max-sm:hidden">
                     <li>
-                        <a href="#" className="text-lg hover:text-gray-400 transition duration-300">
+                        <a href="/" className="text-lg hover:text-gray-400 transition duration-300">
                             Home
                         </a>
                     </li>
                     <li>
-                        <a href="#" className="text-lg hover:text-gray-400 transition duration-300">
+                        <a href="/dashboard" className="text-lg hover:text-gray-400 transition duration-300">
                             Dashboard
                         </a>
                     </li>
